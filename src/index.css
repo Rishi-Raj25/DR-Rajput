@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1E3A8A;
+  --color-secondary: #E0F2FE;
+  --color-beige: #FDF8F1;
+  --color-accent: #3B82F6;
+  
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+:root {
+  --bg-beige: #FDF8F1;
+  --primary-blue: #1E3A8A;
+  --accent-light: #E0F2FE;
+  --glass-bg: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  body {
+    @apply bg-beige text-slate-900 font-sans antialiased selection:bg-primary/20;
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-serif text-primary tracking-tight;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/40 backdrop-blur-xl border border-white/30 shadow-2xl rounded-[2.5rem] transition-all duration-500;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white px-10 py-4 rounded-full font-bold transition-all duration-300 hover:bg-primary/95 hover:scale-105 active:scale-95 shadow-xl shadow-primary/20 cursor-pointer;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-primary/20 text-primary px-10 py-4 rounded-full font-bold transition-all duration-300 hover:bg-primary hover:text-white active:scale-95 hover:border-primary cursor-pointer;
+  }
+
+  .form-input {
+    @apply w-full bg-white border-2 border-slate-900/10 rounded-2xl px-6 py-5 outline-none font-medium transition-all duration-300;
+    @apply focus:border-slate-900 focus:ring-4 focus:ring-slate-900/5;
+  }
+
+  .form-input-error {
+    @apply border-red-500 bg-red-50/30 focus:border-red-600 focus:ring-red-600/10;
+  }
+
+  .error-message {
+    @apply text-red-600 text-xs font-black uppercase tracking-widest mt-2 ml-4 animate-pulse;
+  }
+
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.15;
+    animation: float-bubble 20s infinite ease-in-out;
+  }
+}
+
+@keyframes float-bubble {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(100px, -50px) scale(1.1); }
+  66% { transform: translate(-50px, 100px) scale(0.9); }
+}
+
+.section-spacing {
+  @apply py-28 md:py-40;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-beige);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
